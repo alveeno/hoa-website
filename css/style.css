@@ -371,6 +371,82 @@ section { position: relative; z-index: 1; }
 .seal .seal-rotate { transform-box: fill-box; transform-origin: center; animation: spin 60s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ---------------- Bottle stage — faux-3D scroll/pointer hero ----------- */
+.bottle-stage {
+  position: relative;
+  margin: 0;
+  width: min(400px, 74vw);
+  perspective: 1300px;
+}
+.bottle-plate {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ece2d2;
+  border: 1px solid var(--line-strong);
+  box-shadow:
+    0 50px 110px -35px rgba(0, 0, 0, 0.9),
+    0 0 90px rgba(201, 162, 39, 0.13);
+  transform:
+    rotateY(calc(var(--tilt, 0) * 8deg))
+    rotateX(calc(var(--lift, 0) * -3deg))
+    scale(calc(1 - var(--away, 0) * 0.06));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.bottle-plate::after {
+  /* hairline inner gold keyline for a framed, museum-plate finish */
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(156, 122, 30, 0.28);
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 3;
+}
+.bottle-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+.bottle-view.is-active { opacity: 1; }
+.plate-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    105deg,
+    transparent 32%,
+    rgba(255, 251, 235, 0.35) 46%,
+    rgba(255, 251, 235, 0.08) 56%,
+    transparent 70%
+  );
+  mix-blend-mode: soft-light;
+  transform: translateX(calc(var(--tilt, 0) * -18%));
+}
+/* the 100-point seal, worn as a small medallion over the plate corner */
+.seal--badge {
+  position: absolute;
+  width: clamp(110px, 13vw, 150px);
+  right: -9%;
+  bottom: 5.5%;
+  z-index: 4;
+  padding: 4px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(12, 11, 10, 0.94) 95%, transparent 100%);
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.75));
+}
+@media (prefers-reduced-motion: reduce) {
+  .bottle-plate { transform: none; }
+  .plate-sheen { transform: none; }
+}
+
 /* scroll cue */
 .scroll-cue {
   position: absolute;

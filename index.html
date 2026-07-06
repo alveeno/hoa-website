@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" as="image" href="assets/hero/arras-bottle-front.webp"
+        imagesrcset="assets/hero/arras-bottle-front.webp 900w, assets/hero/arras-bottle-front-lg.webp 1500w"
+        imagesizes="(max-width: 900px) 74vw, 400px" />
 </head>
 <body>
 
@@ -57,8 +60,30 @@
       </div>
 
       <div class="hero-art reveal in d2">
-        <!-- The 100-point seal -->
-        <svg class="seal" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A perfect 100 points from the Robert Parker Wine Advocate">
+        <!-- Faux-3D bottle stage: three angle-consistent studio renders,
+             crossfaded and tilted by scroll / pointer for dimensionality -->
+        <figure class="bottle-stage" aria-label="The bottle: House of Arras E.J. Carr Late Disgorged 1998 Magnum">
+          <div class="bottle-plate">
+            <img class="bottle-view" data-view="left"
+                 src="assets/hero/arras-bottle-left.webp"
+                 srcset="assets/hero/arras-bottle-left.webp 900w, assets/hero/arras-bottle-left-lg.webp 1500w"
+                 sizes="(max-width: 900px) 74vw, 400px"
+                 alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img class="bottle-view is-active" data-view="front"
+                 src="assets/hero/arras-bottle-front.webp"
+                 srcset="assets/hero/arras-bottle-front.webp 900w, assets/hero/arras-bottle-front-lg.webp 1500w"
+                 sizes="(max-width: 900px) 74vw, 400px"
+                 alt="Magnum of House of Arras E.J. Carr Late Disgorged 1998 sparkling wine in warm studio light, black and gold label reading Tasmania, Arras, Méthode Traditionnelle" />
+            <img class="bottle-view" data-view="right"
+                 src="assets/hero/arras-bottle-right.webp"
+                 srcset="assets/hero/arras-bottle-right.webp 900w, assets/hero/arras-bottle-right-lg.webp 1500w"
+                 sizes="(max-width: 900px) 74vw, 400px"
+                 alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <div class="plate-sheen" aria-hidden="true"></div>
+          </div>
+
+          <!-- The 100-point seal, worn as a medallion on the plate -->
+          <svg class="seal seal--badge" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A perfect 100 points from the Robert Parker Wine Advocate">
           <defs>
             <linearGradient id="seal-gold" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#9c7a1e" />
@@ -81,7 +106,8 @@
           </g>
           <text x="150" y="172" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="104" font-weight="700" fill="url(#seal-gold)">100</text>
           <text x="150" y="200" text-anchor="middle" font-family="Jost, sans-serif" font-size="13" letter-spacing="8" fill="#e7c873">POINTS</text>
-        </svg>
+          </svg>
+        </figure>
       </div>
     </div>
 
